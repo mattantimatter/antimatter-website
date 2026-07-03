@@ -30,15 +30,15 @@ interface CardData {
 const cards: CardData[] = [
   {
     title: "Antimatter IDE",
-    image: "/img/ide-mockup.png",
+    image: "/images/screens/settings.png",
   },
   {
     title: "Agent Orchestration",
-    image: "/img/orchestration-mockup.png",
+    image: "/images/screens/agent-deploy.png",
   },
   {
-    title: "Energy & Water AI",
-    image: "/img/energy-mockup.png",
+    title: "Setup Wizard",
+    image: "/images/screens/setup-step2.png",
   },
 ];
 
@@ -173,16 +173,9 @@ function SafariCard({ title, imageSrc, index }: BulgeCardProps): ReactNode {
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </motion.div>
-      <div
-        className="pointer-events-none absolute inset-0 mix-blend-color"
-        style={{
-          background: "linear-gradient(135deg, #333DA7 0%, #7388DF 100%)",
-        }}
-        aria-hidden="true"
-      />
       <motion.div 
         className="absolute inset-0"
-        animate={{ backgroundColor: isHovered ? "rgba(0,0,0,0.1)" : "rgba(0,0,0,0.2)" }}
+        animate={{ backgroundColor: isHovered ? "rgba(0,0,0,0.05)" : "rgba(0,0,0,0.15)" }}
         transition={{ duration: 0.3 }}
       />
       <div className="absolute inset-0 flex items-center justify-center">
@@ -385,14 +378,7 @@ function BulgeCard({ title, imageSrc, index }: BulgeCardProps): ReactNode {
         className="absolute inset-0 h-full w-full"
         aria-hidden="true"
       />
-      <div
-        className="pointer-events-none absolute inset-0 mix-blend-color"
-        style={{
-          background: "linear-gradient(135deg, #333DA7 0%, #7388DF 100%)",
-        }}
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute inset-0 bg-black/10" />
       <div className="absolute inset-0 flex items-center justify-center">
         <h3 className="text-2xl font-medium tracking-tight text-white md:text-3xl">
           {title}
