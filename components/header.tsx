@@ -42,12 +42,12 @@ export function Header(): ReactNode {
 
   return (
     <>
-      {/* Light-mode gradient fade behind header */}
+      {/* Light-mode gradient fade behind header — transparent to blend with hero */}
       <div
-        className="pointer-events-none fixed top-0 left-0 z-[39] h-40 w-full dark:hidden"
+        className="pointer-events-none fixed top-0 left-0 z-[39] h-28 w-full dark:hidden"
         style={{
           background:
-            "linear-gradient(to bottom, hsl(var(--background)) 0%, hsl(var(--background) / 0.95) 30%, hsl(var(--background) / 0.7) 55%, hsl(var(--background) / 0.3) 75%, transparent 100%)",
+            "linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 50%, transparent 100%)",
         }}
         aria-hidden="true"
       />
@@ -60,16 +60,16 @@ export function Header(): ReactNode {
         }}
         aria-hidden="true"
       />
-      {/* Blur layer */}
+      {/* Blur layer — subtle in light mode, stronger in dark */}
       <div
-        className="pointer-events-none fixed top-0 left-0 z-40 h-36 w-full"
+        className="pointer-events-none fixed top-0 left-0 z-40 h-24 w-full dark:h-36"
         style={{
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
           maskImage:
-            "linear-gradient(to bottom, black 0%, black 30%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 70%, transparent 100%)",
+            "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.5) 50%, transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to bottom, black 0%, black 30%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 70%, transparent 100%)",
+            "linear-gradient(to bottom, black 0%, rgba(0,0,0,0.5) 50%, transparent 100%)",
         }}
         aria-hidden="true"
       />
