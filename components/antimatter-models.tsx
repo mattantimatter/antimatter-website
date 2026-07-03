@@ -156,7 +156,7 @@ function ComparisonChart() {
                               "linear-gradient(93.92deg, #8587e3 -13.51%, #4c4dac 40.91%, #696aac 113.69%)",
                             boxShadow: "0 0 12px rgba(105, 106, 172, 0.4)",
                           }
-                        : undefined
+                        : {}
                     }
                     initial={{ width: 0 }}
                     animate={
