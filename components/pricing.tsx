@@ -174,7 +174,7 @@ function PricingCard({ plan }: { plan: PricingPlan }) {
 
 export function Pricing(): ReactNode {
   return (
-    <section className="px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+    <section id="pricing" className="px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16">
           <p className="text-4xl font-medium tracking-tight text-foreground">

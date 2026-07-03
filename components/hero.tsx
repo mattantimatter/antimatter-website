@@ -53,11 +53,11 @@ export function Hero(): ReactNode {
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <span className="block">Your models. Your code.</span>
+          <span className="block">The Agentic</span>
           <span className="block">
-            Your{" "}
+            Coding{" "}
             <em className="text-background/80 dark:text-background/80 italic">
-              rules
+              Company
             </em>.
           </span>
         </motion.h1>

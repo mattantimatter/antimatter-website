@@ -94,7 +94,7 @@ export function FAQ(): ReactNode {
   };
 
   return (
-    <section className="px-4 py-20 sm:px-6 md:py-28 lg:px-8 border-t border-foreground/10">
+    <section id="faq" className="px-4 py-20 sm:px-6 md:py-28 lg:px-8 border-t border-foreground/10">
       <div className="mx-auto max-w-7xl">
         <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-6">

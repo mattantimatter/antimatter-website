@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useState, type ReactNode } from "react";
 
 const navLinks = [
-  { href: "#features", label: "Products" },
+  { href: "#products", label: "Products" },
   { href: "#pricing", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
   { href: "https://docs.antimatterai.com", label: "Docs" },

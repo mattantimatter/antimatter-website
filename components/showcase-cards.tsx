@@ -393,7 +393,7 @@ export function ShowcaseCards(): ReactNode {
   const CardComponent = isSafari ? SafariCard : BulgeCard;
 
   return (
-    <section className="px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+    <section id="products" className="px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <h2 className="mb-12 text-2xl font-medium tracking-tight text-foreground md:text-3xl lg:text-4xl">
           Three products. One platform.
