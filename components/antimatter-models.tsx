@@ -9,7 +9,6 @@ interface Model {
   score: number;
   context: string;
   speed: string;
-  specialty: string;
   badge?: string;
 }
 
@@ -21,7 +20,6 @@ const antimatterModels: Model[] = [
     score: 94.1,
     context: "200K tokens",
     speed: "92 tok/s",
-    specialty: "Adaptive routing",
     badge: "Flagship",
   },
   {
@@ -31,7 +29,6 @@ const antimatterModels: Model[] = [
     score: 91.7,
     context: "128K tokens",
     speed: "118 tok/s",
-    specialty: "Code generation",
   },
   {
     name: "Antimatter Reason",
@@ -40,7 +37,6 @@ const antimatterModels: Model[] = [
     score: 89.4,
     context: "256K tokens",
     speed: "64 tok/s",
-    specialty: "Chain-of-thought",
   },
 ];
 
@@ -68,34 +64,49 @@ function ModelCard({ model, index }: { model: Model; index: number }) {
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay: index * 0.15 }}
-      className="relative overflow-hidden rounded-2xl border border-border/50 bg-card p-8"
+      className="group relative overflow-hidden rounded-2xl border border-[#1f1f26] bg-[#0a0a0e] p-8 transition-all duration-300 hover:border-[#696aac]/40 hover:shadow-[0_0_20px_rgba(105,106,172,0.1)]"
     >
+      {/* Subtle top gradient accent line */}
+      <div
+        className="absolute inset-x-0 top-0 h-[1px] opacity-60"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, #a2a3e9 50%, transparent)",
+        }}
+      />
+
       {model.badge && (
-        <span className="absolute right-4 top-4 rounded-full bg-[#6366F1]/10 px-3 py-1 text-xs font-medium text-[#6366F1]">
+        <span className="absolute right-4 top-4 rounded-full border border-[#696aac]/30 bg-[#696aac]/10 px-3 py-1 text-xs font-medium text-[#c7c8f2]">
           {model.badge}
         </span>
       )}
-      <h3 className="text-xl font-semibold text-foreground">{model.name}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+      <h3 className="text-xl font-semibold text-[#f6f6fd]">{model.name}</h3>
+      <p className="mt-3 text-sm leading-relaxed text-[#8a8a96]">
         {model.description}
       </p>
 
-      <div className="mt-6 grid grid-cols-3 gap-4 border-t border-border/50 pt-6">
+      <div className="mt-6 grid grid-cols-3 gap-4 border-t border-[#1f1f26] pt-6">
         <div>
-          <p className="text-xs text-muted-foreground">Benchmark</p>
-          <p className="mt-1 text-lg font-semibold text-foreground">
+          <p className="text-xs font-medium uppercase tracking-wider text-[#696aac]">
+            Benchmark
+          </p>
+          <p className="mt-1 text-lg font-semibold text-[#f6f6fd]">
             {model.score}
           </p>
         </div>
         <div>
-          <p className="text-xs text-muted-foreground">Context</p>
-          <p className="mt-1 text-lg font-semibold text-foreground">
+          <p className="text-xs font-medium uppercase tracking-wider text-[#696aac]">
+            Context
+          </p>
+          <p className="mt-1 text-lg font-semibold text-[#f6f6fd]">
             {model.context}
           </p>
         </div>
         <div>
-          <p className="text-xs text-muted-foreground">Speed</p>
-          <p className="mt-1 text-lg font-semibold text-foreground">
+          <p className="text-xs font-medium uppercase tracking-wider text-[#696aac]">
+            Speed
+          </p>
+          <p className="mt-1 text-lg font-semibold text-[#f6f6fd]">
             {model.speed}
           </p>
         </div>
@@ -110,8 +121,8 @@ function ComparisonChart() {
   const maxScore = Math.max(...comparisons.map((c) => c.score));
 
   return (
-    <div ref={ref} className="space-y-4">
-      <h3 className="text-lg font-medium text-foreground">
+    <div ref={ref} className="space-y-5">
+      <h3 className="text-lg font-medium text-[#f6f6fd]">
         Composite Benchmark (HumanEval + SWE-bench + MMLU)
       </h3>
       <div className="space-y-3">
@@ -123,21 +134,30 @@ function ComparisonChart() {
                 <span
                   className={`text-sm ${
                     competitor.isAntimatter
-                      ? "font-semibold text-foreground"
-                      : "text-muted-foreground"
+                      ? "font-semibold text-[#f6f6fd]"
+                      : "text-[#8a8a96]"
                   }`}
                 >
                   {competitor.name}
                 </span>
               </div>
               <div className="flex flex-1 items-center gap-0">
-                <div className="relative h-8 flex-1 overflow-hidden rounded-md bg-muted/30">
+                <div className="relative h-8 flex-1 overflow-hidden rounded-md bg-[#111115]">
                   <motion.div
                     className={`absolute inset-y-0 left-0 rounded-md ${
                       competitor.isAntimatter
-                        ? "bg-gradient-to-r from-[#6366F1] to-[#8B5CF6]"
-                        : "bg-muted/60"
+                        ? ""
+                        : "bg-[#1f1f26]"
                     }`}
+                    style={
+                      competitor.isAntimatter
+                        ? {
+                            background:
+                              "linear-gradient(93.92deg, #8587e3 -13.51%, #4c4dac 40.91%, #696aac 113.69%)",
+                            boxShadow: "0 0 12px rgba(105, 106, 172, 0.4)",
+                          }
+                        : undefined
+                    }
                     initial={{ width: 0 }}
                     animate={
                       isInView ? { width: `${percentage}%` } : { width: 0 }
@@ -153,8 +173,8 @@ function ComparisonChart() {
                   <motion.span
                     className={`text-sm font-mono tabular-nums ${
                       competitor.isAntimatter
-                        ? "font-semibold text-foreground"
-                        : "text-muted-foreground"
+                        ? "font-semibold text-[#c7c8f2]"
+                        : "text-[#8a8a96]"
                     }`}
                     initial={{ opacity: 0 }}
                     animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -177,15 +197,26 @@ export function AntimatterModels(): ReactNode {
     <section id="models" className="px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-4">
-          <span className="inline-block rounded-full bg-[#6366F1]/10 px-4 py-1.5 text-sm font-medium text-[#6366F1]">
+          <span className="inline-block rounded-full border border-[#696aac]/20 bg-[#696aac]/8 px-4 py-1.5 text-sm font-medium text-[#a2a3e9]">
             3 Models &middot; 1 API &middot; Antimatter Orchestration
           </span>
         </div>
         <div className="mb-16 max-w-3xl">
-          <h2 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-5xl">
-            Three models. One unified API.
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+            <span
+              className="inline"
+              style={{
+                background:
+                  "linear-gradient(90deg, #f6f6fd 0%, #a2a3e9 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Three models. One unified API.
+            </span>
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg text-[#8a8a96]">
             Antimatter Orchestration automatically routes every request to the
             optimal model — no configuration, no switching, no wasted tokens.
             Frontier capability at a fraction of the cost.
@@ -200,7 +231,7 @@ export function AntimatterModels(): ReactNode {
         </div>
 
         {/* Comparison Chart */}
-        <div className="mt-16 rounded-2xl border border-border/50 bg-card p-8">
+        <div className="mt-16 rounded-2xl border border-[#1f1f26] bg-[#0a0a0e] p-8">
           <ComparisonChart />
         </div>
       </div>
