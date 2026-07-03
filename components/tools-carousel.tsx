@@ -15,25 +15,31 @@ const tools: Tool[] = [
     title: "Connect",
     description:
       "Add your API keys, connect Ollama, or install HuggingFace CLI\u2014the Setup Wizard handles it in 60 seconds.",
-    image: "/img/ide-mockup.png",
+    image: "/images/screens/setup-step1.png",
+  },
+  {
+    title: "Customize",
+    description:
+      "Personalize your workspace\u2014themes, typography, AI inference mode. Make it yours in Step 2.",
+    image: "/images/screens/setup-step2.png",
+  },
+  {
+    title: "Configure",
+    description:
+      "Set agent autonomy, privacy controls, and choose your default model engine\u2014Giga or Nano.",
+    image: "/images/screens/setup-step3.png",
   },
   {
     title: "Build",
     description:
-      "Write code with AI assistance from any model. Local inference for privacy, cloud for power.",
-    image: "/img/orchestration-mockup.png",
+      "Write code with AI assistance from any model. Plan, build, and ship with Antimatter Giga.",
+    image: "/images/screens/agent-view.png",
   },
   {
-    title: "Orchestrate",
+    title: "Deploy",
     description:
-      "Spin up agents that work across repos, plan tasks, and execute multi-step workflows autonomously.",
-    image: "/img/agents-window-mockup.png",
-  },
-  {
-    title: "Ship",
-    description:
-      "Deploy with confidence. Full audit trail, version control integration, and zero vendor lock-in.",
-    image: "/img/energy-mockup.png",
+      "Agents push to production, trigger Vercel builds, and handle multi-repo deployments autonomously.",
+    image: "/images/screens/agent-deploy.png",
   },
 ];
 
@@ -100,7 +106,7 @@ export function ToolsCarousel(): ReactNode {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-12 text-2xl font-medium tracking-tight text-foreground md:text-3xl lg:text-4xl">
-            From zero to shipping in four steps
+            From zero to shipping in five steps
           </h2>
         </div>
       </div>
@@ -150,7 +156,7 @@ export function ToolsCarousel(): ReactNode {
                   src={tool.image}
                   alt={tool.title}
                   fill
-                  className="object-contain object-top scale-90 grayscale"
+                  className="object-contain object-top rounded-lg"
                   sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, 420px"
                   draggable={false}
                 />
