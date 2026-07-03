@@ -2,10 +2,10 @@
 
 import { useScroll, useTransform, useSpring, motion } from "motion/react";
 import {
-  Paperclip,
-  Lightbulb,
-  PenTool,
-  Layout,
+  Terminal,
+  Cpu,
+  Zap,
+  GitBranch,
   Mic,
   ArrowRight,
   ArrowDown,
@@ -53,13 +53,12 @@ export function Hero(): ReactNode {
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <span className="block">Design with AI —</span>
+          <span className="block">Your models. Your code.</span>
           <span className="block">
-            the{" "}
+            Your{" "}
             <em className="text-background/80 dark:text-background/80 italic">
-              future
-            </em>{" "}
-            of creativity
+              rules
+            </em>.
           </span>
         </motion.h1>
 
@@ -82,7 +81,7 @@ export function Hero(): ReactNode {
           >
             <div className="flex items-start gap-3">
               <textarea
-                placeholder="Ask Kraft anything..."
+                placeholder="Plan, Build, / for skills, @ for context..."
                 className="no-focus-ring mx-4 my-2 min-h-15 w-full resize-none bg-transparent text-gray-800 placeholder:text-gray-400"
                 rows={2}
               />
@@ -93,33 +92,33 @@ export function Hero(): ReactNode {
                 <button
                   type="button"
                   className="focus-ring isolate flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-gray-400 transition-colors hover:border-gray-300 hover:text-gray-600"
-                  aria-label="Attach file"
+                  aria-label="Terminal"
                 >
-                  <Paperclip className="h-4 w-4" />
+                  <Terminal className="h-4 w-4" />
                 </button>
 
                 <button
                   type="button"
                   className="focus-ring isolate flex h-12 shrink-0 cursor-pointer items-center gap-2 rounded-full bg-white px-5 text-sm text-gray-500 transition-colors hover:border-gray-300 hover:text-gray-700"
                 >
-                  <Lightbulb className="h-4 w-4 shrink-0" />
-                  <span className="xs:inline hidden">Reasoning</span>
+                  <Cpu className="h-4 w-4 shrink-0" />
+                  <span className="xs:inline hidden">Agent</span>
                 </button>
 
                 <button
                   type="button"
                   className="focus-ring isolate hidden h-12 shrink-0 cursor-pointer items-center gap-2 rounded-full bg-white px-5 text-sm text-gray-500 transition-colors hover:border-gray-300 hover:text-gray-700 sm:flex"
                 >
-                  <PenTool className="h-4 w-4 shrink-0" />
-                  <span>Create Design</span>
+                  <Zap className="h-4 w-4 shrink-0" />
+                  <span>Multi-Repo</span>
                 </button>
 
                 <button
                   type="button"
                   className="focus-ring isolate hidden h-12 shrink-0 cursor-pointer items-center gap-2 rounded-full bg-white px-5 text-sm text-gray-500 transition-colors hover:border-gray-300 hover:text-gray-700 md:flex"
                 >
-                  <Layout className="h-4 w-4 shrink-0" />
-                  <span>Wireframe</span>
+                  <GitBranch className="h-4 w-4 shrink-0" />
+                  <span>Local Models</span>
                 </button>
               </div>
 
@@ -143,7 +142,7 @@ export function Hero(): ReactNode {
           </div>
 
           <p className="text-background/60 mt-6 text-center text-xs">
-            Kraft can make mistakes, but learns from them.
+            Antimatter IDE — local-first AI coding with full model ownership.
           </p>
         </motion.div>
       </div>
@@ -159,8 +158,7 @@ export function Hero(): ReactNode {
         }}
       >
         <p className="text-foreground/60 dark:text-foreground/50 max-w-sm text-sm">
-          Kraft uses advanced AI to transform your ideas into stunning designs.
-          Just describe what you need.
+          Run local models, connect cloud providers, and orchestrate multi-repo agent tasks — all from one IDE.
         </p>
 
         <ArrowDown

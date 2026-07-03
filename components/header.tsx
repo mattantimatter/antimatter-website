@@ -11,15 +11,15 @@ import Link from "next/link";
 import { useState, type ReactNode } from "react";
 
 const navLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#templates", label: "Templates" },
+  { href: "#features", label: "Products" },
   { href: "#pricing", label: "Pricing" },
-  { href: "#resources", label: "Resources" },
+  { href: "#faq", label: "FAQ" },
+  { href: "https://docs.antimatterai.com", label: "Docs" },
 ];
 
 const authLinks = [
-  { href: "", label: "Contact" },
-  { href: "", label: "Join" },
+  { href: "", label: "Sign in" },
+  { href: "#download", label: "Download" },
 ];
 
 export function Header(): ReactNode {
@@ -78,11 +78,11 @@ export function Header(): ReactNode {
             <Link
               href="/"
               className="focus-ring flex items-center"
-              aria-label="Kraft home"
+              aria-label="Antimatter home"
             >
               <Image
                 src="/svg/logo.svg"
-                alt="Kraft"
+                alt="Antimatter AI"
                 width={120}
                 height={34}
                 priority

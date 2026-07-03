@@ -11,29 +11,29 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: "What kinds of designs can Kraft create?",
+    question: "What models does Antimatter IDE support?",
     answer:
-      "Kraft can generate logos, landing pages, social media graphics, brand identities, app interfaces, presentations, and more. Just describe what you need in natural language, and Kraft will produce multiple production-ready options.",
+      "Antimatter supports any model you can run locally via Ollama or HuggingFace, plus cloud providers like OpenAI, Anthropic, Google Gemini, and DeepSeek. Switch between them instantly from the model selector.",
   },
   {
-    question: "How does Kraft ensure brand consistency?",
+    question: "Is my code sent to external servers?",
     answer:
-      "Kraft learns your brand guidelines—colors, fonts, tone, and style—and applies them automatically to every design. Upload your brand kit once, and Kraft maintains consistency across all outputs.",
+      "Only if you choose to use a cloud model. When running local models through Ollama, your code never leaves your machine. You have full control over what data goes where.",
   },
   {
-    question: "Can I edit or refine designs after generation?",
+    question: "How is this different from Cursor?",
     answer:
-      "Absolutely. You can tweak colors, adjust layouts, change fonts, or request specific modifications using natural language. Kraft understands conversational edits like 'make it more minimal' or 'use a warmer palette.'",
+      "Antimatter gives you full model ownership. Run any local model, connect any cloud provider, and switch freely. No vendor lock-in, no forced subscriptions for basic AI features, and your data stays yours.",
   },
   {
-    question: "What export formats does Kraft support?",
+    question: "What's included in the Free plan?",
     answer:
-      "Kraft exports to all major formats including PNG, SVG, PDF, and Figma. You can also push designs directly to your codebase with production-ready React or HTML/CSS components.",
+      "The full IDE with local model support, Ollama and HuggingFace integration, unlimited local inference, VS Code extension compatibility, and community support. No credit card required.",
   },
   {
-    question: "Is my data and designs secure?",
+    question: "Can I use my existing VS Code extensions?",
     answer:
-      "Yes. All designs and data are encrypted end-to-end. We never train our models on your proprietary work, and you retain full ownership of everything you create with Kraft.",
+      "Yes. Antimatter IDE is built on the VS Code foundation, so your existing extensions, themes, keybindings, and settings all work out of the box. Zero migration friction.",
   },
 ];
 

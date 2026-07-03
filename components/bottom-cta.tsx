@@ -10,10 +10,10 @@ export function BottomCTA(): ReactNode {
         <div className="relative z-10 px-8 py-12 sm:px-12">
           <div className="max-w-xl">
             <h2 className="text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
-              Get early access
+              Download Antimatter IDE
             </h2>
             <p className="mt-3 text-lg max-w-md text-muted-foreground">
-              Every week, we ship new AI-powered design features. Join and be first in line to shape what we build next.
+              Free forever for local models. Start coding with AI that respects your privacy and runs on your hardware.
             </p>
 
             <form className="mt-8 flex flex-col gap-2 sm:flex-row">
@@ -27,14 +27,14 @@ export function BottomCTA(): ReactNode {
                 type="submit"
                 className="h-12 cursor-pointer rounded-full bg-background px-8 font-medium text-foreground transition-opacity hover:opacity-90"
               >
-                Join waitlist
+                Get notified
               </button>
             </form>
 
             <p className="mt-4 text-xs max-w-xs text-muted-foreground">
-              We respect your inbox. No spam, just product updates.{" "}
+              Available for macOS, Windows, and Linux. No credit card required.{" "}
               <Link href="#" className="underline hover:text-foreground">
-                Privacy Policy
+                View system requirements
               </Link>
               .
             </p>

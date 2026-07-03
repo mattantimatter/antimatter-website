@@ -6,21 +6,21 @@ import Image from "next/image";
 import { Facebook, Twitter, Linkedin } from "lucide-react";
 
 const footerLinks = {
-  Product: [
-    { label: "Features", href: "#" },
-    { label: "Pricing", href: "#" },
-    { label: "Changelog", href: "#" },
-    { label: "Roadmap", href: "#" },
+  Products: [
+    { label: "Antimatter IDE", href: "#" },
+    { label: "Orchestration", href: "#" },
+    { label: "Energy & Water AI", href: "#" },
+    { label: "Pricing", href: "#pricing" },
   ],
   Company: [
     { label: "About", href: "#" },
     { label: "Blog", href: "#" },
     { label: "Careers", href: "#" },
-    { label: "Press", href: "#" },
+    { label: "Contact", href: "#" },
   ],
-  Resources: [
+  Developers: [
     { label: "Documentation", href: "#" },
-    { label: "Help Center", href: "#" },
+    { label: "GitHub", href: "https://github.com/mattantimatter" },
     { label: "Community", href: "#" },
   ],
 };
@@ -89,7 +89,7 @@ export function Footer(): ReactNode {
       <div className="relative mx-auto max-w-7xl py-8">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Kraft, Inc. All rights reserved.
+            © {new Date().getFullYear()} Antimatter AI, Inc. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link

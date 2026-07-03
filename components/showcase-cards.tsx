@@ -29,16 +29,16 @@ interface CardData {
 
 const cards: CardData[] = [
   {
-    title: "Startup Launch Kit",
-    image: "/img/mock1_compressed.webp",
+    title: "Antimatter IDE",
+    image: "/img/ide-mockup.png",
   },
   {
-    title: "E-commerce Suite",
-    image: "/img/mock5_compressed.webp",
+    title: "Agent Orchestration",
+    image: "/img/orchestration-mockup.png",
   },
   {
-    title: "SaaS Dashboard",
-    image: "/img/mock9_compressed.webp",
+    title: "Energy & Water AI",
+    image: "/img/energy-mockup.png",
   },
 ];
 
@@ -410,7 +410,7 @@ export function ShowcaseCards(): ReactNode {
     <section className="px-4 py-20 sm:px-6 md:py-28 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <h2 className="mb-12 text-2xl font-medium tracking-tight text-foreground md:text-3xl lg:text-4xl">
-          Pre-built designs, ready to customize
+          Three products. One platform.
         </h2>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -426,8 +426,8 @@ export function ShowcaseCards(): ReactNode {
 
         <div className="mt-12 flex flex-col gap-2 sm:flex-row items-start sm:justify-between">
           <p className="max-w-md text-lg text-muted-foreground">
-            Skip the blank canvas. Start with curated presets crafted for
-            specific industries and use cases.
+            From local-first AI coding to enterprise infrastructure
+            optimization — Antimatter covers the full stack.
           </p>
           <Link
             href="#"

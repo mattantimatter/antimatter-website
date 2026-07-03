@@ -12,28 +12,28 @@ interface Tool {
 
 const tools: Tool[] = [
   {
-    title: "Describe",
+    title: "Connect",
     description:
-      "Tell Kraft what you need. A logo, a landing page, an entire brand—just say it.",
-    image: "/img/describe.webp",
+      "Add your API keys, connect Ollama, or install HuggingFace CLI\u2014the Setup Wizard handles it in 60 seconds.",
+    image: "/img/ide-mockup.png",
   },
   {
-    title: "Generate",
+    title: "Build",
     description:
-      "Watch as Kraft creates multiple design options, each one production-ready.",
-    image: "/img/generate.webp",
+      "Write code with AI assistance from any model. Local inference for privacy, cloud for power.",
+    image: "/img/orchestration-mockup.png",
   },
   {
-    title: "Refine",
+    title: "Orchestrate",
     description:
-      "Tweak colors, fonts, adjust layouts—Kraft understands natural language edits.",
-    image: "/img/refine.webp",
+      "Spin up agents that work across repos, plan tasks, and execute multi-step workflows autonomously.",
+    image: "/img/agents-window-mockup.png",
   },
   {
     title: "Ship",
     description:
-      "Export to Figma, download assets, or push directly to your codebase. Done.",
-    image: "/img/ship.webp",
+      "Deploy with confidence. Full audit trail, version control integration, and zero vendor lock-in.",
+    image: "/img/energy-mockup.png",
   },
 ];
 
@@ -100,7 +100,7 @@ export function ToolsCarousel(): ReactNode {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-12 text-2xl font-medium tracking-tight text-foreground md:text-3xl lg:text-4xl">
-            From idea to finished design in four simple steps
+            From zero to shipping in four steps
           </h2>
         </div>
       </div>

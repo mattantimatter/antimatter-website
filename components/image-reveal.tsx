@@ -18,20 +18,20 @@ interface ImageRevealProps {
 
 const defaultImages = [
   // Column 0
-  { src: "/img/mock1_compressed.webp", alt: "Kraft design 1" },
-  { src: "/img/mock2_compressed.webp", alt: "Kraft design 2" },
-  { src: "/img/mock3_compressed.webp", alt: "Kraft design 3" },
-  { src: "/img/mock4_compressed.webp", alt: "Kraft design 4" },
+  { src: "/img/ide-mockup.png", alt: "Antimatter IDE with AI chat" },
+  { src: "/img/orchestration-mockup.png", alt: "Agent orchestration workflow" },
+  { src: "/img/energy-mockup.png", alt: "Energy & Water AI dashboard" },
+  { src: "/img/agents-window-mockup.png", alt: "Agents Window multi-repo" },
   // Column 1
-  { src: "/img/mock5_compressed.webp", alt: "Kraft design 5" },
-  { src: "/img/mock6_compressed.webp", alt: "Kraft design 6" },
-  { src: "/img/mock7_compressed.webp", alt: "Kraft design 7" },
-  { src: "/img/mock8_compressed.webp", alt: "Kraft design 8" },
+  { src: "/img/orchestration-mockup.png", alt: "Orchestration engine" },
+  { src: "/img/ide-mockup.png", alt: "Antimatter IDE code editor" },
+  { src: "/img/agents-window-mockup.png", alt: "Agent threads" },
+  { src: "/img/energy-mockup.png", alt: "Water treatment monitoring" },
   // Column 2
-  { src: "/img/mock9_compressed.webp", alt: "Kraft design 9" },
-  { src: "/img/mock10_compressed.webp", alt: "Kraft design 10" },
-  { src: "/img/mock11_compressed.webp", alt: "Kraft design 11" },
-  { src: "/img/mock12_compressed.webp", alt: "Kraft design 12" },
+  { src: "/img/energy-mockup.png", alt: "Predictive maintenance" },
+  { src: "/img/agents-window-mockup.png", alt: "Multi-repo agent tasks" },
+  { src: "/img/ide-mockup.png", alt: "Local model inference" },
+  { src: "/img/orchestration-mockup.png", alt: "Workflow builder" },
 ];
 
 export function ImageReveal({

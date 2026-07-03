@@ -20,45 +20,45 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    badge: "Design Agency",
-    company: "Stellar Creative",
+    badge: "Developer Tooling",
+    company: "Series B SaaS",
     quote:
-      "We've completely transformed our workflow with Kraft. What used to take our team days now happens in hours. The AI understands our brand guidelines perfectly and produces designs that clients love on the first revision.",
-    name: "Sarah Chen",
-    role: "Creative Director",
-    image: "https://images.unsplash.com/photo-1574108233269-86d1199d28de?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "Antimatter IDE cut our model integration time from days to hours. The Setup Wizard alone saved us an entire sprint. Running local models means our proprietary code never leaves our machines.",
+    name: "James Park",
+    role: "Engineering Lead",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0",
     stats: [
-      { label: "Design Output", value: "10x faster" },
-      { label: "Client Revisions", value: "-80%" },
-      { label: "Team Size", value: "12 designers" },
+      { label: "Setup Time", value: "60 seconds" },
+      { label: "Cost Savings", value: "$8k/mo" },
+      { label: "Team Size", value: "14 engineers" },
     ],
   },
   {
-    badge: "Tech Startup",
-    company: "Quantum Labs",
+    badge: "AI Startup",
+    company: "Stealth Mode",
     quote:
-      "As a startup without a dedicated design team, Kraft has been a game-changer. We ship beautiful marketing materials, pitch decks, and product interfaces without hiring a single designer. The ROI is incredible.",
-    name: "Marcus Rodriguez",
-    role: "Co-founder & CEO",
-    image: "https://images.unsplash.com/photo-1530268729831-4b0b9e170218?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "We switched from Cursor to Antimatter because we needed full model ownership. Being able to run DeepSeek locally and switch to Claude for complex tasks without vendor lock-in is exactly what we needed.",
+    name: "Priya Sharma",
+    role: "CTO & Co-founder",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0",
     stats: [
-      { label: "Design Cost Savings", value: "$150k/year" },
-      { label: "Time to Launch", value: "2 weeks" },
-      { label: "Assets Created", value: "500+" },
+      { label: "Model Switching", value: "Instant" },
+      { label: "Data Privacy", value: "100%" },
+      { label: "Agents Running", value: "24/7" },
     ],
   },
   {
     badge: "Enterprise",
-    company: "GlobalTech Inc",
+    company: "Fortune 500 Logistics",
     quote:
-      "Rolling out Kraft across our marketing team was seamless. The brand consistency features ensure every piece of content—from social posts to annual reports—looks like it came from the same designer. It's remarkable.",
-    name: "Roy Park",
-    role: "VP of Marketing",
-    image: "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "The orchestration framework handles workflows we used to manage manually across three teams. The audit trail gives us the compliance coverage we needed for SOC 2.",
+    name: "Michael Torres",
+    role: "VP of Engineering",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0",
     stats: [
-      { label: "Brand Consistency", value: "99.5%" },
+      { label: "Workflows Automated", value: "14" },
       { label: "Team Members", value: "200+" },
-      { label: "Monthly Designs", value: "5,000+" },
+      { label: "Compliance", value: "SOC 2" },
     ],
   },
 ];
@@ -123,7 +123,7 @@ function TestimonialCard({ testimonial, isActive }: { testimonial: Testimonial; 
 
         <div className="mt-6 border-t border-foreground/10 pt-8">
           <p className="text-xs font-medium uppercase text-muted-foreground">
-            How they use Kraft
+            How they use Antimatter
           </p>
           <div className="mt-4 space-y-2">
             {testimonial.stats.map((stat) => (
@@ -194,7 +194,7 @@ export function Testimonials(): ReactNode {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl mb-12">
           <p className="text-4xl font-medium tracking-tight text-foreground">
-            Trusted by design teams worldwide
+            Trusted by engineering teams worldwide
           </p>
         </div>
       </div>

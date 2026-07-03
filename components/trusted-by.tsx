@@ -13,21 +13,21 @@ interface Logo {
 }
 
 const logosSetA: Logo[] = [
-  { name: "Acme Corp", src: "/mock-logos/acmecorp.svg", href: "#acme" },
-  { name: "Boltshift", src: "/mock-logos/boltshift.svg", href: "#boltshift" },
-  { name: "Capsule", src: "/mock-logos/capsule.svg", href: "#capsule" },
-  { name: "Catalog", src: "/mock-logos/catalog.svg", href: "#catalog" },
-  { name: "Cloudwatch", src: "/mock-logos/cloudwatch.svg", href: "#cloudwatch" },
-  { name: "Featherdev", src: "/mock-logos/featherdev.svg", href: "#featherdev" },
+  { name: "Ollama", src: "/mock-logos/acmecorp.svg", href: "#ollama" },
+  { name: "HuggingFace", src: "/mock-logos/boltshift.svg", href: "#huggingface" },
+  { name: "OpenAI", src: "/mock-logos/capsule.svg", href: "#openai" },
+  { name: "Anthropic", src: "/mock-logos/catalog.svg", href: "#anthropic" },
+  { name: "Vercel", src: "/mock-logos/cloudwatch.svg", href: "#vercel" },
+  { name: "Supabase", src: "/mock-logos/featherdev.svg", href: "#supabase" },
 ];
 
 const logosSetB: Logo[] = [
-  { name: "Altshift", src: "/mock-logos/altshift.svg", href: "#altshift" },
-  { name: "Biosynthesis", src: "/mock-logos/biosynthesis.svg", href: "#biosynthesis" },
-  { name: "Commandr", src: "/mock-logos/commandr.svg", href: "#commandr" },
-  { name: "Epicurious", src: "/mock-logos/epicurious.svg", href: "#epicurious" },
-  { name: "Focalpoint", src: "/mock-logos/focalpoint.svg", href: "#focalpoint" },
-  { name: "Galileo", src: "/mock-logos/galileo.svg", href: "#galileo" },
+  { name: "DeepSeek", src: "/mock-logos/altshift.svg", href: "#deepseek" },
+  { name: "Google Gemini", src: "/mock-logos/biosynthesis.svg", href: "#gemini" },
+  { name: "GitHub", src: "/mock-logos/commandr.svg", href: "#github" },
+  { name: "Linear", src: "/mock-logos/epicurious.svg", href: "#linear" },
+  { name: "Docker", src: "/mock-logos/focalpoint.svg", href: "#docker" },
+  { name: "VS Code", src: "/mock-logos/galileo.svg", href: "#vscode" },
 ];
 
 function LogoCell({ logoA, logoB, index }: { logoA: Logo; logoB: Logo; index: number }): ReactNode {
@@ -88,7 +88,7 @@ export function TrustedBy(): ReactNode {
       <div className="px-4 sm:px-6 lg:px-[max(2rem,calc((100vw-85rem)/2+2rem))]">
         <div className="mb-10 flex items-center justify-between">
           <h2 className="text-2xl font-medium tracking-tight text-foreground md:text-3xl lg:text-4xl">
-            Trusted by teams who ship faster with Kraft
+            Trusted by teams who ship faster with Antimatter
           </h2>
           <Link
             href="#"

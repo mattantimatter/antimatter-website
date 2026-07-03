@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
 
 export const siteConfig = {
-  name: "React Bits Pro - AI SaaS Template",
+  name: "Antimatter AI",
   description:
-    "Build, deploy, and scale AI-powered applications with enterprise-grade infrastructure. From ideation to production in minutes.",
-  url: "https://nexus-ai.com",
+    "Your models. Your code. Your rules. AI products, agentic systems, and intelligent infrastructure built for teams who own their stack.",
+  url: "https://antimatterai.com",
   ogImage: "/og-image.png",
-  creator: "@nexusai",
+  creator: "@antimaboratory",
   authors: [
     {
-      name: "Nexus AI",
-      url: "https://nexus-ai.com",
+      name: "Antimatter AI",
+      url: "https://antimatterai.com",
     },
   ],
   keywords: [
-    "AI",
-    "artificial intelligence",
-    "machine learning",
-    "AI platform",
-    "LLM",
-    "GPT",
-    "AI API",
+    "AI IDE",
+    "local models",
+    "Ollama",
+    "HuggingFace",
+    "AI coding",
+    "agent orchestration",
     "developer tools",
-    "AI infrastructure",
+    "VS Code fork",
+    "open source IDE",
   ],
 } as const;
 

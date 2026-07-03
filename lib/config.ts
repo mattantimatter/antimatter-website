@@ -8,17 +8,17 @@
  */
 
 export const siteConfig = {
-  name: "Nexus AI",
-  tagline: "The AI Platform for Modern Teams",
+  name: "Antimatter AI",
+  tagline: "Intelligence at the edge of what's possible",
   description:
-    "Build, deploy, and scale AI-powered applications with enterprise-grade infrastructure. From ideation to production in minutes.",
-  url: "https://nexus-ai.com",
-  twitter: "@nexusai",
+    "AI products, agentic systems, and intelligent infrastructure. Built for teams who want to move fast and own their stack.",
+  url: "https://antimatterai.com",
+  twitter: "@antimaboratory",
 
   nav: {
     cta: {
-      text: "Start Free",
-      href: "#",
+      text: "Download IDE",
+      href: "#download",
     },
     signIn: {
       text: "Sign in",
