@@ -106,21 +106,44 @@ export function TextReveal({
   const chars = text.split("");
   const charsTotal = chars.length;
 
+  // Split into words to prevent mid-word line breaks
+  const words = text.split(" ");
+  let charOffset = 0;
+
   return (
     <div
       ref={containerRef}
       className="flex min-h-64 items-center justify-center overflow-hidden px-8"
     >
-      <p className={`text-center px-8 ${className}`}>
-        {chars.map((char, index) => (
-          <Char
-            key={index}
-            char={char}
-            charIndex={index}
-            charsTotal={charsTotal}
-            progress={scrollYProgress}
-          />
-        ))}
+      <p className={`text-center px-8 ${className}`} style={{ wordBreak: "keep-all", overflowWrap: "normal" }}>
+        {words.map((word, wordIndex) => {
+          const wordChars = word.split("");
+          const startOffset = charOffset;
+          charOffset += word.length + 1; // +1 for the space
+
+          return (
+            <span key={wordIndex} className="inline-block whitespace-nowrap">
+              {wordChars.map((char, i) => (
+                <Char
+                  key={startOffset + i}
+                  char={char}
+                  charIndex={startOffset + i}
+                  charsTotal={charsTotal}
+                  progress={scrollYProgress}
+                />
+              ))}
+              {wordIndex < words.length - 1 && (
+                <Char
+                  key={`space-${wordIndex}`}
+                  char={" "}
+                  charIndex={startOffset + word.length}
+                  charsTotal={charsTotal}
+                  progress={scrollYProgress}
+                />
+              )}
+            </span>
+          );
+        })}
       </p>
     </div>
   );
