@@ -1,4 +1,6 @@
+import { AntimatterModels } from "@/components/antimatter-models";
 import { BottomCTA } from "@/components/bottom-cta";
+import { EnergySavings } from "@/components/energy-savings";
 import { FAQ } from "@/components/faq";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
@@ -6,12 +8,9 @@ import { Hero } from "@/components/hero";
 import { ImageReveal } from "@/components/image-reveal";
 import { Pricing } from "@/components/pricing";
 import { ShowcaseCards } from "@/components/showcase-cards";
-import { Stats } from "@/components/stats";
-import { Testimonials } from "@/components/testimonials";
 import { TextReveal } from "@/components/text-reveal";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { ToolsCarousel } from "@/components/tools-carousel";
-import { TrustedBy } from "@/components/trusted-by";
 import { createMetadata, siteConfig } from "@/lib/metadata";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
@@ -29,7 +28,7 @@ export default function HomePage(): ReactNode {
       <ThemeSwitch />
       <main id="main-content" className="flex-1">
         <Hero />
-        
+
         {/* Text Reveal Section */}
         <section className="relative py-32 md:py-48">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -40,23 +39,20 @@ export default function HomePage(): ReactNode {
           </div>
         </section>
 
+        {/* 3 Models, 1 API — Comparative Stats */}
+        <AntimatterModels />
+
         {/* Image Reveal Gallery */}
         <ImageReveal />
 
-        {/* Trusted By */}
-        <TrustedBy />
+        {/* Energy & Water Savings (97.1%) + Team Cost Savings */}
+        <EnergySavings />
 
-        {/* Tools Carousel */}
+        {/* Tools Carousel — How it works */}
         <ToolsCarousel />
 
-        {/* Showcase Cards */}
+        {/* Showcase Cards — Three Products */}
         <ShowcaseCards />
-
-        {/* Stats */}
-        <Stats />
-
-        {/* Testimonials */}
-        <Testimonials />
 
         {/* Pricing */}
         <Pricing />
@@ -64,7 +60,7 @@ export default function HomePage(): ReactNode {
         {/* FAQ */}
         <FAQ />
 
-        {/* Bottom CTA */}
+        {/* Download CTA */}
         <BottomCTA />
       </main>
 
