@@ -26,13 +26,13 @@ const tools: Tool[] = [
   {
     title: "Configure",
     description:
-      "Set agent autonomy, privacy controls, and choose your default model engine\u2014Giga or Nano.",
+      "Set agent autonomy, privacy controls, and choose your default model engine—Galileo or Da Vinci.",
     image: "/images/screens/setup-step3.png",
   },
   {
     title: "Build",
     description:
-      "Write code with AI assistance from any model. Plan, build, and ship with Antimatter Giga.",
+      "Write code with AI assistance from any model. Plan, build, and ship with Antimatter Galileo.",
     image: "/images/screens/agent-view.png",
   },
   {

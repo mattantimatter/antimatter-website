@@ -14,16 +14,16 @@ interface Model {
 
 const antimatterModels: Model[] = [
   {
-    name: "Antimatter Router",
+    name: "Antimatter Galileo",
     description:
-      "Automatically routes to the highest-performing model for each task. One API, always the best result.",
+      "Our flagship model. Automatically routes to the highest-performing strategy for each task. One API, always the best result.",
     score: 94.1,
     context: "200K tokens",
     speed: "92 tok/s",
     badge: "Flagship",
   },
   {
-    name: "Antimatter Coder",
+    name: "Antimatter Da Vinci",
     description:
       "Purpose-built for code generation, refactoring, and multi-file edits. Outperforms GPT-4o on SWE-bench.",
     score: 91.7,
@@ -31,7 +31,7 @@ const antimatterModels: Model[] = [
     speed: "118 tok/s",
   },
   {
-    name: "Antimatter Reason",
+    name: "Antimatter Newton",
     description:
       "Deep reasoning and planning model for complex multi-step tasks, architecture decisions, and agent orchestration.",
     score: 89.4,
@@ -47,7 +47,7 @@ interface Competitor {
 }
 
 const comparisons: Competitor[] = [
-  { name: "Antimatter Router", score: 94.1, isAntimatter: true },
+  { name: "Antimatter Galileo", score: 94.1, isAntimatter: true },
   { name: "GPT-4o", score: 80.5 },
   { name: "Claude 3.5 Sonnet", score: 82.3 },
   { name: "Meta Llama 3.1 405B", score: 80.4 },

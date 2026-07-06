@@ -39,9 +39,9 @@ const cards = [
     linkHref: "#models",
     items: [
       "Single API, three models",
-      "Giga — deep reasoning",
-      "Nano — fast completions",
-      "Router — intelligent routing",
+      "Galileo — flagship reasoning",
+      "Da Vinci — code generation",
+      "Newton — deep planning",
     ],
     image: "/images/screens/setup-step3.png",
   },
