@@ -6,7 +6,7 @@ import { useState, useEffect, type ReactNode } from "react";
 
 /* ─── IDE Mockup Data ─── */
 
-type IDEMode = "agent" | "plan" | "preview";
+type IDEMode = "idle" | "agent" | "plan";
 
 interface AgentStep {
   action: string;
@@ -15,56 +15,47 @@ interface AgentStep {
 }
 
 const agentSteps: AgentStep[] = [
-  { action: "Thought", detail: "I'll scaffold a Next.js app with the Antimatter design system.", delay: 800 },
-  { action: "Read", detail: "package.json", delay: 1200 },
-  { action: "Read", detail: "tailwind.config.ts", delay: 1800 },
-  { action: "Searched", detail: "component patterns", delay: 2400 },
-  { action: "Created", detail: "app/page.tsx  +84 -0", delay: 3200 },
-  { action: "Created", detail: "components/hero.tsx  +52 -0", delay: 4000 },
-  { action: "Updated", detail: "app/globals.css  +12 -3", delay: 4800 },
-  { action: "Done", detail: "Build successful. 280ms first paint.", delay: 5600 },
+  { action: "Thought", detail: "I'll scaffold a Next.js app with the Antimatter design system.", delay: 1200 },
+  { action: "Read", detail: "package.json", delay: 2000 },
+  { action: "Read", detail: "tailwind.config.ts", delay: 2800 },
+  { action: "Searched", detail: "component patterns", delay: 3600 },
+  { action: "Created", detail: "app/page.tsx  +84 -0", delay: 4600 },
+  { action: "Created", detail: "components/hero.tsx  +52 -0", delay: 5400 },
+  { action: "Updated", detail: "app/globals.css  +12 -3", delay: 6200 },
+  { action: "Done", detail: "Build successful. 280ms first paint, zero layout shift.", delay: 7200 },
 ];
 
-const sidebarItems = [
-  { name: "Build Landing Page", status: "now", detail: "Done. Fonts preload in the he..." },
-  { name: "Refactor Auth Flow", status: "now", detail: "Migrated to OAuth 2.1 with..." },
-  { name: "Plan Mission Control", status: "now", detail: "+20 -3 · Drafted implementati..." },
-  { name: "PyTorch Experiments", status: "10m", detail: "PyTorch MNIST Experiments" },
-  { name: "Set up Cursor Rules", status: "30m", detail: "Set up Cursor Rules for Dashb..." },
-  { name: "Deploy to Vercel", status: "45m", detail: "+135 -21 · Production deploy" },
+const sidebarRepos = [
+  { name: "akamai-chat-2", desc: "Development en...", time: "2h", active: false },
+  { name: "antimatter-ide", desc: "Antimatter open agent", time: "1d", active: true },
+  { name: "mclaren-alteryx", desc: "McLaren Alteryx Nex...", time: "6d", active: false },
 ];
 
-const planContent = {
-  title: "Mission Control Interface",
-  description: "A grid view of all open windows as scaled previews, allowing quick selection to bring any window to front.",
-  tasks: [
-    "Add multiplayer mode to useAppStore.ts",
-    "Create a new MissionControlView.tsx component",
-    "Update AppManager.tsx to apply expose modes",
-  ],
-};
-
-const previewContent = {
-  url: "http://localhost:3000",
-  title: "Antimatter AI",
-  sections: [
-    { year: "2026", name: "Secure codebase indexing", status: "Published" },
-    { year: "2026", name: "Semantic search", status: "Published" },
-    { year: "2025", name: "Reinforcement learning", status: "Published" },
-    { year: "2024", name: "Shadow workspaces", status: "Published" },
-    { year: "2024", name: "Multi-agent collaboration", status: "Published" },
-  ],
-};
+const planTasks = [
+  "Scaffold component architecture with atomic design",
+  "Integrate Antimatter Giga for code generation",
+  "Set up CI/CD pipeline with preview deployments",
+  "Add multiplayer collaboration via CRDTs",
+];
 
 /* ─── IDE Component ─── */
 
 function IDEMockup() {
-  const [mode, setMode] = useState<IDEMode>("agent");
+  const [mode, setMode] = useState<IDEMode>("idle");
   const [visibleSteps, setVisibleSteps] = useState<number>(0);
-  const [isAnimating, setIsAnimating] = useState(true);
 
+  // Auto-start agent mode after mount
   useEffect(() => {
-    if (!isAnimating) return;
+    const startTimer = setTimeout(() => {
+      setMode("agent");
+    }, 1500);
+    return () => clearTimeout(startTimer);
+  }, []);
+
+  // Animate agent steps
+  useEffect(() => {
+    if (mode !== "agent") return;
+    setVisibleSteps(0);
     const timers: NodeJS.Timeout[] = [];
     agentSteps.forEach((step, idx) => {
       const timer = setTimeout(() => {
@@ -72,206 +63,249 @@ function IDEMockup() {
       }, step.delay);
       timers.push(timer);
     });
-    const doneTimer = setTimeout(() => setIsAnimating(false), 6200);
-    timers.push(doneTimer);
     return () => timers.forEach(clearTimeout);
-  }, [isAnimating]);
-
-  const handleModeChange = (newMode: IDEMode) => {
-    setMode(newMode);
-    if (newMode === "agent") {
-      setVisibleSteps(0);
-      setIsAnimating(true);
-    }
-  };
+  }, [mode]);
 
   return (
-    <div className="overflow-hidden rounded-xl border border-neutral-200 bg-neutral-900 shadow-2xl dark:border-neutral-700">
-      {/* Title bar */}
-      <div className="flex items-center justify-between border-b border-neutral-700 bg-neutral-800 px-4 py-2.5">
-        <div className="flex items-center gap-2">
-          <div className="h-3 w-3 rounded-full bg-neutral-600" />
-          <div className="h-3 w-3 rounded-full bg-neutral-600" />
-          <div className="h-3 w-3 rounded-full bg-neutral-600" />
-        </div>
-        <span className="text-xs text-neutral-400">Antimatter Desktop</span>
-        <div className="w-14" />
-      </div>
-
-      {/* Main content */}
-      <div className="flex min-h-[420px] sm:min-h-[480px]">
+    <div className="overflow-hidden rounded-xl border border-[#464650] shadow-2xl" style={{ background: "#111415" }}>
+      {/* Sidebar + Main layout */}
+      <div className="flex min-h-[460px] sm:min-h-[520px]">
         {/* Sidebar */}
-        <div className="hidden w-56 shrink-0 border-r border-neutral-700 bg-neutral-850 sm:block">
-          <div className="border-b border-neutral-700 px-4 py-3">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">
-              Ready for Review {sidebarItems.length}
-            </span>
+        <aside className="hidden w-[220px] shrink-0 flex-col border-r border-[#464650] sm:flex" style={{ background: "#1a1c1d" }}>
+          {/* Window dots */}
+          <div className="flex gap-2 px-4 pb-2 pt-4 opacity-50">
+            <div className="h-2.5 w-2.5 rounded-full bg-[#464650]" />
+            <div className="h-2.5 w-2.5 rounded-full bg-[#464650]" />
+            <div className="h-2.5 w-2.5 rounded-full bg-[#464650]" />
           </div>
-          <div className="space-y-0.5 p-2">
-            {sidebarItems.map((item, idx) => (
-              <div
-                key={idx}
-                className={`rounded-lg px-3 py-2.5 ${idx === 0 ? "bg-violet-500/10" : "hover:bg-neutral-800"} cursor-pointer transition-colors`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className={`text-xs font-medium ${idx === 0 ? "text-violet-300" : "text-neutral-300"}`}>
-                    {item.name}
-                  </span>
-                  <span className="text-[10px] text-neutral-500">{item.status}</span>
-                </div>
-                <p className="mt-0.5 truncate text-[10px] text-neutral-500">{item.detail}</p>
+
+          {/* Nav items */}
+          <nav className="flex flex-col gap-0.5 px-3 py-3">
+            <button type="button" className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-left text-xs font-medium text-[#b7b5b4]" style={{ background: "#474746" }}>
+              <span className="text-sm">⊕</span> New Agent
+            </button>
+            <button type="button" className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-left text-xs text-[#c7c5d1] hover:bg-[#333537]">
+              <span className="text-sm">⌕</span> Search
+            </button>
+            <button type="button" className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-left text-xs text-[#c7c5d1] hover:bg-[#333537]">
+              <span className="text-sm">⚙</span> Automations
+            </button>
+            <button type="button" className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-left text-xs text-[#c7c5d1] hover:bg-[#333537]">
+              <span className="text-sm">≡</span> Customize
+            </button>
+          </nav>
+
+          {/* Repositories */}
+          <div className="mt-2 flex-1 overflow-hidden px-3">
+            <div className="mb-2 flex items-center justify-between px-2">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#c7c5d1]">Repositories</span>
+              <div className="flex gap-1">
+                <span className="text-[12px] text-[#918f9b]">⊟</span>
+                <span className="text-[12px] text-[#918f9b]">⊞</span>
               </div>
-            ))}
+            </div>
+            <div className="flex flex-col gap-0.5">
+              {sidebarRepos.map((repo) => (
+                <div
+                  key={repo.name}
+                  className={`relative rounded-lg px-3 py-2 ${
+                    repo.active ? "bg-[#333537]" : "hover:bg-[#282a2c]"
+                  } cursor-pointer`}
+                >
+                  {repo.active && (
+                    <div className="absolute bottom-0 left-0 top-0 w-[2px] rounded-r bg-[#a2a3e9]" />
+                  )}
+                  <div className="flex items-center gap-2">
+                    <span className="text-[12px] text-[#918f9b]">📁</span>
+                    <span className={`text-xs ${repo.active ? "font-medium text-[#a2a3e9]" : "text-[#e2e2e4]"}`}>
+                      {repo.name}
+                    </span>
+                  </div>
+                  <div className="mt-0.5 flex items-center justify-between pl-5">
+                    <span className="truncate text-[10px] text-[#918f9b]">{repo.desc}</span>
+                    <span className="text-[10px] text-[#918f9b]">{repo.time}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Center panel */}
-        <div className="flex flex-1 flex-col">
-          {/* Mode tabs */}
-          <div className="flex items-center gap-1 border-b border-neutral-700 px-4 py-2">
-            {(["agent", "plan", "preview"] as IDEMode[]).map((m) => (
-              <button
-                key={m}
-                type="button"
-                onClick={() => handleModeChange(m)}
-                className={`rounded-md px-3 py-1.5 text-xs font-medium capitalize transition-colors ${
-                  mode === m
-                    ? "bg-violet-500/20 text-violet-300"
-                    : "text-neutral-400 hover:bg-neutral-800 hover:text-neutral-200"
-                }`}
-              >
-                {m === "agent" ? "⚡ Agent" : m === "plan" ? "📋 Plan" : "🌐 Preview"}
+          {/* Footer */}
+          <div className="border-t border-[#464650]/30 px-3 py-3">
+            <div className="flex items-center gap-2.5">
+              <div className="h-7 w-7 rounded-full bg-[#333537]" />
+              <div className="flex flex-col">
+                <span className="text-[11px] font-medium text-[#e2e2e4]">Matthew Bravo</span>
+                <span className="text-[10px] text-[#918f9b]">Pro Plan</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        {/* Main content area */}
+        <main className="flex flex-1 flex-col" style={{ background: "#111415" }}>
+          {/* Top bar */}
+          <header className="flex items-center justify-between border-b border-[#464650] px-5 py-2.5" style={{ background: "#111415" }}>
+            <span className="text-sm font-bold tracking-tight text-[#c1c1ff]">Antimatter AI</span>
+            <div className="flex items-center gap-3">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#c7c5d1]">Share</span>
+              <button type="button" className="rounded px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-[#282967]" style={{ background: "#a2a3e9" }}>
+                Deploy
               </button>
-            ))}
-          </div>
+            </div>
+          </header>
 
-          {/* Content area */}
-          <div className="flex-1 overflow-hidden p-4">
+          {/* Center content */}
+          <div className="flex flex-1 flex-col items-center justify-center p-6 relative">
+            {/* Subtle glow */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.03] blur-[80px]" style={{ background: "#a2a3e9" }} />
+
             <AnimatePresence mode="wait">
+              {/* Idle state — prompt area */}
+              {mode === "idle" && (
+                <motion.div
+                  key="idle"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="z-10 flex w-full max-w-[560px] flex-col gap-3"
+                >
+                  {/* Breadcrumbs */}
+                  <div className="ml-1 flex items-center gap-1.5 text-[11px] text-[#918f9b]" style={{ fontFamily: "monospace" }}>
+                    <span className="text-[#c7c5d1]">antimatter-ide</span>
+                    <span>›</span>
+                    <span>main</span>
+                    <span>›</span>
+                    <span>Local</span>
+                  </div>
+                  {/* Input box */}
+                  <div className="rounded-xl border border-[#464650] p-4" style={{ background: "rgba(30, 32, 33, 0.7)", backdropFilter: "blur(20px)" }}>
+                    <div className="min-h-[48px] text-sm text-[#918f9b]">
+                      Plan, Build, / for skills, @ for context
+                    </div>
+                    <div className="mt-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#333537] text-[12px] text-[#c7c5d1]">+</div>
+                        <span className="text-xs text-[#918f9b]">Antimatter Giga ▾</span>
+                      </div>
+                      <div className="flex h-7 w-7 items-center justify-center rounded-full border border-[#464650] bg-[#333537] text-[12px] text-[#c7c5d1]">
+                        🎤
+                      </div>
+                    </div>
+                  </div>
+                  {/* Action buttons */}
+                  <div className="flex items-center gap-2.5">
+                    <button type="button" className="rounded-full border border-[#464650] px-3.5 py-1.5 text-xs text-[#e2e2e4] hover:bg-[#333537]">
+                      Plan New Idea <span className="ml-1 text-[10px] text-[#918f9b]">⇧ Tab</span>
+                    </button>
+                    <button type="button" className="rounded-full border border-[#464650] px-3.5 py-1.5 text-xs text-[#e2e2e4] hover:bg-[#333537]">
+                      Multitask
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Agent mode — animated build steps */}
               {mode === "agent" && (
                 <motion.div
                   key="agent"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
-                  className="space-y-3"
+                  className="z-10 flex w-full max-w-[560px] flex-col gap-3"
                 >
-                  <div className="mb-4 rounded-lg bg-neutral-800 p-3">
-                    <p className="text-xs text-neutral-300">
-                      build a landing page based on our brand docs and design system
-                    </p>
+                  {/* Task header */}
+                  <div className="rounded-lg border border-[#464650] px-4 py-3" style={{ background: "rgba(30, 32, 33, 0.7)" }}>
+                    <p className="text-xs text-[#e2e2e4]">build a landing page based on our brand docs and design system</p>
                   </div>
-                  {agentSteps.slice(0, visibleSteps).map((step, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex items-start gap-3"
-                    >
-                      <span className={`mt-0.5 text-[10px] font-medium ${
-                        step.action === "Done" ? "text-green-400" :
-                        step.action === "Created" ? "text-emerald-400" :
-                        step.action === "Updated" ? "text-amber-400" :
-                        step.action === "Thought" ? "text-violet-400" :
-                        "text-blue-400"
-                      }`}>
-                        {step.action}
-                      </span>
-                      <span className="text-xs text-neutral-300">{step.detail}</span>
-                    </motion.div>
-                  ))}
-                  {isAnimating && visibleSteps < agentSteps.length && (
-                    <motion.div
-                      animate={{ opacity: [0.4, 1, 0.4] }}
-                      transition={{ duration: 1.2, repeat: Infinity }}
-                      className="flex items-center gap-2"
-                    >
-                      <div className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-                      <span className="text-[10px] text-neutral-500">Working...</span>
-                    </motion.div>
-                  )}
+                  {/* Steps */}
+                  <div className="space-y-2.5 px-1">
+                    {agentSteps.slice(0, visibleSteps).map((step, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="flex items-start gap-3"
+                      >
+                        <span className={`mt-0.5 text-[11px] font-semibold ${
+                          step.action === "Done" ? "text-green-400" :
+                          step.action === "Created" ? "text-emerald-400" :
+                          step.action === "Updated" ? "text-amber-400" :
+                          step.action === "Thought" ? "text-[#c1c1ff]" :
+                          "text-blue-400"
+                        }`}>
+                          {step.action}
+                        </span>
+                        <span className="text-xs text-[#c7c5d1]">{step.detail}</span>
+                      </motion.div>
+                    ))}
+                    {visibleSteps < agentSteps.length && (
+                      <motion.div
+                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        transition={{ duration: 1.2, repeat: Infinity }}
+                        className="flex items-center gap-2 pl-0.5"
+                      >
+                        <div className="h-1.5 w-1.5 rounded-full bg-[#a2a3e9]" />
+                        <span className="text-[10px] text-[#918f9b]">Working...</span>
+                      </motion.div>
+                    )}
+                  </div>
                 </motion.div>
               )}
 
+              {/* Plan mode */}
               {mode === "plan" && (
                 <motion.div
                   key="plan"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
-                  className="space-y-4"
+                  className="z-10 flex w-full max-w-[560px] flex-col gap-4"
                 >
                   <div>
-                    <h4 className="text-sm font-semibold text-white">{planContent.title}</h4>
-                    <p className="mt-1 text-xs text-neutral-400">{planContent.description}</p>
+                    <h4 className="text-sm font-semibold text-[#e2e2e4]">Mission Control Interface</h4>
+                    <p className="mt-1 text-xs text-[#918f9b]">A grid view of all open windows as scaled previews, allowing quick selection to bring any window to front.</p>
                   </div>
                   <div className="space-y-2">
-                    <span className="text-[10px] font-medium text-neutral-500">{planContent.tasks.length} Tasks</span>
-                    {planContent.tasks.map((task, idx) => (
-                      <div key={idx} className="flex items-center gap-2 rounded-md bg-neutral-800 px-3 py-2">
-                        <div className="h-3.5 w-3.5 rounded-full border border-neutral-600" />
-                        <span className="text-xs text-neutral-300">{task}</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.08em] text-[#918f9b]">{planTasks.length} Tasks</span>
+                    {planTasks.map((task, idx) => (
+                      <div key={idx} className="flex items-center gap-2.5 rounded-lg border border-[#464650] px-3 py-2" style={{ background: "rgba(30, 32, 33, 0.7)" }}>
+                        <div className="h-3.5 w-3.5 rounded-full border border-[#918f9b]" />
+                        <span className="text-xs text-[#c7c5d1]">{task}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="flex items-center gap-2 pt-2">
-                    <span className="rounded bg-amber-500/20 px-2 py-0.5 text-[10px] font-medium text-amber-300">Plan</span>
-                    <span className="text-[10px] text-neutral-500">Composer 2.5</span>
-                  </div>
-                </motion.div>
-              )}
-
-              {mode === "preview" && (
-                <motion.div
-                  key="preview"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
-                  className="space-y-3"
-                >
-                  <div className="flex items-center gap-2 rounded-lg bg-neutral-800 px-3 py-2">
-                    <div className="flex gap-1">
-                      <div className="h-2 w-2 rounded-full bg-neutral-600" />
-                      <div className="h-2 w-2 rounded-full bg-neutral-600" />
-                    </div>
-                    <span className="text-[10px] text-neutral-400">{previewContent.url}</span>
-                  </div>
-                  <div className="rounded-lg border border-neutral-700 bg-neutral-800 p-4">
-                    <h4 className="text-lg font-bold italic text-white">{previewContent.title}</h4>
-                    <p className="mt-2 text-xs text-neutral-400">
-                      Software creation is changing. We are a group of researchers, engineers, and technologists building at the edge of what&apos;s possible.
-                    </p>
-                    <div className="mt-4 space-y-0">
-                      {previewContent.sections.map((section, idx) => (
-                        <div key={idx} className="flex items-center justify-between border-t border-neutral-700 py-2">
-                          <div className="flex items-center gap-3">
-                            <span className="text-[10px] text-neutral-500">{section.year}</span>
-                            <span className="text-xs text-neutral-300">{section.name}</span>
-                          </div>
-                          <span className="text-[10px] text-neutral-500">{section.status}</span>
-                        </div>
-                      ))}
-                    </div>
+                  <div className="flex items-center gap-2">
+                    <span className="rounded px-2 py-0.5 text-[10px] font-semibold text-[#282967]" style={{ background: "#a2a3e9" }}>Plan</span>
+                    <span className="text-[10px] text-[#918f9b]">Antimatter Giga</span>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          {/* Bottom input */}
-          <div className="border-t border-neutral-700 px-4 py-3">
-            <div className="flex items-center justify-between rounded-lg bg-neutral-800 px-3 py-2">
-              <span className="text-xs text-neutral-500">Plan, search, build anything...</span>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] text-neutral-500">Antimatter Giga</span>
-              </div>
+          {/* Bottom mode switcher */}
+          <div className="border-t border-[#464650] px-5 py-3">
+            <div className="flex items-center justify-center gap-2">
+              {(["idle", "agent", "plan"] as IDEMode[]).map((m) => (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => setMode(m)}
+                  className={`rounded-full px-4 py-1.5 text-[11px] font-medium capitalize transition-all ${
+                    mode === m
+                      ? "border border-[#a2a3e9]/40 text-[#c1c1ff]"
+                      : "border border-[#464650] text-[#918f9b] hover:border-[#918f9b] hover:text-[#c7c5d1]"
+                  }`}
+                  style={mode === m ? { background: "rgba(162, 163, 233, 0.1)" } : {}}
+                >
+                  {m === "idle" ? "Home" : m === "agent" ? "Agent" : "Plan"}
+                </button>
+              ))}
             </div>
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );
